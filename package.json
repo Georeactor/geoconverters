@@ -1,6 +1,6 @@
 {
   "name": "geoconverters",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Converting from SHP, KML, and GeoJSON to GeoJSON and TopoJSON",
   "main": "index.js",
   "scripts": {

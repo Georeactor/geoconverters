@@ -95,7 +95,10 @@ function convertGeoJSONtoTopoJSON(gj_file, tj_file, callback) {
       'minimum-area': 0,
       'preserve-attached': true,
       'retain-proportion': 0,
-      'force-clockwise': false
+      'force-clockwise': false,
+      'property-transform': function (feature) {
+        return feature.properties;
+      }
     });
     fs.writeFile(tj_file, JSON.stringify(tj), function (err) {
       if (err) {
