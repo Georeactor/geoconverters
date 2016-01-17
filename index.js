@@ -31,9 +31,7 @@ function convertKMLtoGeoJSON(kml_file, gj_file, callback) {
     }
     var gj = kml(kmldom, { styles: true });
     fs.writeFile(gj_file, JSON.stringify(gj), function (err) {
-      if (err) {
-        throw err;
-      }
+      return callback(err || null);
     });
   });
 }
@@ -51,9 +49,7 @@ function convertGPXtoGeoJSON(gpx_file, gj_file, callback) {
     }
     var gj = gpx(gpxdom);
     fs.writeFile(gj_file, JSON.stringify(gj), function (err) {
-      if (err) {
-        throw err;
-      }
+      return callback(err || null);
     });
   });
 }
@@ -67,10 +63,7 @@ function convertTopoJSONtoGeoJSON(tj_file, gj_file, callback) {
     var key = Object.keys(tj.objects)[0];
     var gj = topojson.feature(tj, tj.objects[key]);
     fs.writeFile(gj_file, JSON.stringify(gj), function (err) {
-      if (err) {
-        return callback(err);
-      }
-      callback();
+      return callback(err || null);
     });
   });
 }
@@ -87,7 +80,7 @@ function convertGeoJSONtoTopoJSON(gj_file, tj_file, callback) {
       return callback('GeoJSON file was not valid JSON');
     }
     var tj = topojson.topology({ geo: gj }, {
-      'verbose': true,
+      'verbose': false,
       'pre-quantization': 1000000,
       'post-quantization': 10000,
       'coordinate-system': 'auto',
@@ -101,10 +94,7 @@ function convertGeoJSONtoTopoJSON(gj_file, tj_file, callback) {
       }
     });
     fs.writeFile(tj_file, JSON.stringify(tj), function (err) {
-      if (err) {
-        return callback(err);
-      }
-      callback();
+      return callback(err || null);
     });
   });
 }
