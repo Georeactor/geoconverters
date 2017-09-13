@@ -1,5 +1,7 @@
 # geoconverters
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Georeactor/geoconverters.svg)](https://greenkeeper.io/)
+
 Combines several Node modules to convert from one geo file to another
 
 ## Formats accepted
